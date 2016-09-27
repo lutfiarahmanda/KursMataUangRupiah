@@ -1,0 +1,41 @@
+﻿<html>
+
+<br />
+<br />
+<br />
+<head>
+</head>
+<body>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">
+                Kurs Mata Uang Rupiah   
+            </div>
+        </div>
+        <div class="panel-body">
+            <table id="kurstable" class="nowrap display"></table>
+        </div>
+        <div class="panel-footer">
+
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var kurstable = $("#kurstable").DataTable({
+            ajax: '@Url.Action("getDataKurs", "KursMataUang")',
+            sAjaxDataProp: '',
+            searching: false,
+            lengthChange: false,
+            columns: [
+                { data: "Mata_Uang", title: "Mata Uang" },
+                { data: "Jual", title: "Jual" },
+                { data: "Beli", title: "Beli" }
+            ]
+        });
+        $("#kurstable thead th.sorting_asc").remove();
+        $("#kurstable thead").prepend("<tr><th class='sorting_asc' style='text-align: center' tabindex='0' aria-controls='kurstable' rowspan='2' colspan='1' style='width: 412px;' aria-label='Mata Uang: activate to sort column descending' aria-sort='ascending' >Mata Uang</th><th colspan='2' style='text-align: center'>Harga</th></tr>");
+        
+    });
+</script>
